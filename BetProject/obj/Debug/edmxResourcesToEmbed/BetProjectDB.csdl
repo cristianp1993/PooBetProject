@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BetProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="apostador">
+    <Key>
+      <PropertyRef Name="apo_codigo" />
+    </Key>
+    <Property Name="apo_codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="apo_saldo" Type="Decimal" Precision="10" Scale="5" />
+  </EntityType>
+  <EntityType Name="empleado">
+    <Key>
+      <PropertyRef Name="emp_codigo" />
+    </Key>
+    <Property Name="emp_codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="emp_documento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="emp_perfil" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="emp_salario" Type="Decimal" Precision="10" Scale="5" />
+    <NavigationProperty Name="persona" Relationship="Self.FK__empleado__emp_sa__3A81B327" FromRole="empleado" ToRole="persona" />
+  </EntityType>
+  <EntityType Name="persona">
+    <Key>
+      <PropertyRef Name="per_documento" />
+    </Key>
+    <Property Name="per_documento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="per_nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="per_fecha_nac" Type="DateTime" Precision="7" />
+    <Property Name="per_correo" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="per_genero" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="per_contrasena" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="empleado" Relationship="Self.FK__empleado__emp_sa__3A81B327" FromRole="persona" ToRole="empleado" />
+  </EntityType>
+  <Association Name="FK__empleado__emp_sa__3A81B327">
+    <End Role="persona" Type="Self.persona" Multiplicity="0..1" />
+    <End Role="empleado" Type="Self.empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="persona">
+        <PropertyRef Name="per_documento" />
+      </Principal>
+      <Dependent Role="empleado">
+        <PropertyRef Name="emp_documento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BetProjectEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="apostador" EntityType="Self.apostador" />
+    <EntitySet Name="empleado" EntityType="Self.empleado" />
+    <EntitySet Name="persona" EntityType="Self.persona" />
+    <AssociationSet Name="FK__empleado__emp_sa__3A81B327" Association="Self.FK__empleado__emp_sa__3A81B327">
+      <End Role="persona" EntitySet="persona" />
+      <End Role="empleado" EntitySet="empleado" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

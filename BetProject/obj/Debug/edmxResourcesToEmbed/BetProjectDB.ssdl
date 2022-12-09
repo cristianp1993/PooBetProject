@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BetProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="apostador">
+    <Key>
+      <PropertyRef Name="apo_codigo" />
+    </Key>
+    <Property Name="apo_codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="apo_saldo" Type="decimal" Precision="10" Scale="5" />
+  </EntityType>
+  <EntityType Name="empleado">
+    <Key>
+      <PropertyRef Name="emp_codigo" />
+    </Key>
+    <Property Name="emp_codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="emp_documento" Type="varchar" MaxLength="20" />
+    <Property Name="emp_perfil" Type="varchar" MaxLength="50" />
+    <Property Name="emp_salario" Type="decimal" Precision="10" Scale="5" />
+  </EntityType>
+  <EntityType Name="persona">
+    <Key>
+      <PropertyRef Name="per_documento" />
+    </Key>
+    <Property Name="per_documento" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="per_nombre" Type="varchar" MaxLength="200" />
+    <Property Name="per_fecha_nac" Type="datetime2" Precision="7" />
+    <Property Name="per_correo" Type="varchar" MaxLength="300" />
+    <Property Name="per_genero" Type="varchar" MaxLength="20" />
+    <Property Name="per_contrasena" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <Association Name="FK__empleado__emp_sa__3A81B327">
+    <End Role="persona" Type="Self.persona" Multiplicity="0..1" />
+    <End Role="empleado" Type="Self.empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="persona">
+        <PropertyRef Name="per_documento" />
+      </Principal>
+      <Dependent Role="empleado">
+        <PropertyRef Name="emp_documento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BetProjectModelStoreContainer">
+    <EntitySet Name="apostador" EntityType="Self.apostador" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="empleado" EntityType="Self.empleado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="persona" EntityType="Self.persona" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__empleado__emp_sa__3A81B327" Association="Self.FK__empleado__emp_sa__3A81B327">
+      <End Role="persona" EntitySet="persona" />
+      <End Role="empleado" EntitySet="empleado" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

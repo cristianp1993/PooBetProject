@@ -1,0 +1,46 @@
+﻿﻿@model BetProject.Models.persona
+@{
+    ViewBag.Title = "Recargar";
+   
+
+}
+
+
+<div id="form_recharge" class="col-md-12">
+    <div class="">
+        <h3 class="text-center">RECARGAR USUARIO</h3>
+
+
+        <div class="form-group col-md-offset-4">
+            <label style="color:black">Apostador *</label>
+
+            @Html.DropDownListFor(model => model.per_documento, Model.LsApostadores, htmlAttributes: new { @onchange = "completeValues()", @class = "form-control select2 ", @id = "inp_apostador" })
+            @Html.ValidationMessageFor(model => model.per_documento, "", htmlAttributes: new { @id = "mensajeFuente", @class = "text-danger" })
+
+        </div>
+        <div class="form-group col-md-offset-4">
+            <label style="color:black">Saldo a Recargar *</label>
+            <input class="form-control" type="number" id="sal_recharge" />
+        </div>
+        <div>
+            <button id="btn_create" class="btn btn-success center-block" onclick="RechargeUser()">RECARGAR</button>
+
+            <span id="men_obliga"></span>
+        </div>
+    </div>
+    
+    
+
+</div>
+
+
+<style>
+    h3 {
+        font-family: Papyrus, fantasy;
+        font-weight: bold;
+    }
+
+    #inp_apostador{
+        height: 35px;
+    }
+</style>

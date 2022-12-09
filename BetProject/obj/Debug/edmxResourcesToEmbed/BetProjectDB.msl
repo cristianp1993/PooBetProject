@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BetProjectModelStoreContainer" CdmEntityContainer="BetProjectEntities">
+    <EntitySetMapping Name="apostador">
+      <EntityTypeMapping TypeName="BetProjectModel.apostador">
+        <MappingFragment StoreEntitySet="apostador">
+          <ScalarProperty Name="apo_codigo" ColumnName="apo_codigo" />
+          <ScalarProperty Name="apo_saldo" ColumnName="apo_saldo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="empleado">
+      <EntityTypeMapping TypeName="BetProjectModel.empleado">
+        <MappingFragment StoreEntitySet="empleado">
+          <ScalarProperty Name="emp_codigo" ColumnName="emp_codigo" />
+          <ScalarProperty Name="emp_documento" ColumnName="emp_documento" />
+          <ScalarProperty Name="emp_perfil" ColumnName="emp_perfil" />
+          <ScalarProperty Name="emp_salario" ColumnName="emp_salario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="persona">
+      <EntityTypeMapping TypeName="BetProjectModel.persona">
+        <MappingFragment StoreEntitySet="persona">
+          <ScalarProperty Name="per_documento" ColumnName="per_documento" />
+          <ScalarProperty Name="per_nombre" ColumnName="per_nombre" />
+          <ScalarProperty Name="per_fecha_nac" ColumnName="per_fecha_nac" />
+          <ScalarProperty Name="per_correo" ColumnName="per_correo" />
+          <ScalarProperty Name="per_genero" ColumnName="per_genero" />
+          <ScalarProperty Name="per_contrasena" ColumnName="per_contrasena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

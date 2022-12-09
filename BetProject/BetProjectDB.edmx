@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BetProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="apostador">
+          <Key>
+            <PropertyRef Name="apo_codigo" />
+          </Key>
+          <Property Name="apo_codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="apo_saldo" Type="decimal" Precision="10" Scale="5" />
+        </EntityType>
+        <EntityType Name="empleado">
+          <Key>
+            <PropertyRef Name="emp_codigo" />
+          </Key>
+          <Property Name="emp_codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="emp_documento" Type="varchar" MaxLength="20" />
+          <Property Name="emp_perfil" Type="varchar" MaxLength="50" />
+          <Property Name="emp_salario" Type="decimal" Precision="10" Scale="5" />
+        </EntityType>
+        <EntityType Name="persona">
+          <Key>
+            <PropertyRef Name="per_documento" />
+          </Key>
+          <Property Name="per_documento" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="per_nombre" Type="varchar" MaxLength="200" />
+          <Property Name="per_fecha_nac" Type="datetime2" Precision="7" />
+          <Property Name="per_correo" Type="varchar" MaxLength="300" />
+          <Property Name="per_genero" Type="varchar" MaxLength="20" />
+          <Property Name="per_contrasena" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <Association Name="FK__empleado__emp_sa__3A81B327">
+          <End Role="persona" Type="Self.persona" Multiplicity="0..1" />
+          <End Role="empleado" Type="Self.empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="per_documento" />
+            </Principal>
+            <Dependent Role="empleado">
+              <PropertyRef Name="emp_documento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BetProjectModelStoreContainer">
+          <EntitySet Name="apostador" EntityType="Self.apostador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="empleado" EntityType="Self.empleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="persona" EntityType="Self.persona" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__empleado__emp_sa__3A81B327" Association="Self.FK__empleado__emp_sa__3A81B327">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="empleado" EntitySet="empleado" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BetProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="apostador">
+          <Key>
+            <PropertyRef Name="apo_codigo" />
+          </Key>
+          <Property Name="apo_codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="apo_saldo" Type="Decimal" Precision="10" Scale="5" />
+        </EntityType>
+        <EntityType Name="empleado">
+          <Key>
+            <PropertyRef Name="emp_codigo" />
+          </Key>
+          <Property Name="emp_codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="emp_documento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="emp_perfil" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="emp_salario" Type="Decimal" Precision="10" Scale="5" />
+          <NavigationProperty Name="persona" Relationship="Self.FK__empleado__emp_sa__3A81B327" FromRole="empleado" ToRole="persona" />
+        </EntityType>
+        <EntityType Name="persona">
+          <Key>
+            <PropertyRef Name="per_documento" />
+          </Key>
+          <Property Name="per_documento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="per_nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="per_fecha_nac" Type="DateTime" Precision="7" />
+          <Property Name="per_correo" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="per_genero" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="per_contrasena" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="empleado" Relationship="Self.FK__empleado__emp_sa__3A81B327" FromRole="persona" ToRole="empleado" />
+        </EntityType>
+        <Association Name="FK__empleado__emp_sa__3A81B327">
+          <End Role="persona" Type="Self.persona" Multiplicity="0..1" />
+          <End Role="empleado" Type="Self.empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="per_documento" />
+            </Principal>
+            <Dependent Role="empleado">
+              <PropertyRef Name="emp_documento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BetProjectEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="apostador" EntityType="Self.apostador" />
+          <EntitySet Name="empleado" EntityType="Self.empleado" />
+          <EntitySet Name="persona" EntityType="Self.persona" />
+          <AssociationSet Name="FK__empleado__emp_sa__3A81B327" Association="Self.FK__empleado__emp_sa__3A81B327">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="empleado" EntitySet="empleado" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BetProjectModelStoreContainer" CdmEntityContainer="BetProjectEntities">
+          <EntitySetMapping Name="apostador">
+            <EntityTypeMapping TypeName="BetProjectModel.apostador">
+              <MappingFragment StoreEntitySet="apostador">
+                <ScalarProperty Name="apo_codigo" ColumnName="apo_codigo" />
+                <ScalarProperty Name="apo_saldo" ColumnName="apo_saldo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="empleado">
+            <EntityTypeMapping TypeName="BetProjectModel.empleado">
+              <MappingFragment StoreEntitySet="empleado">
+                <ScalarProperty Name="emp_codigo" ColumnName="emp_codigo" />
+                <ScalarProperty Name="emp_documento" ColumnName="emp_documento" />
+                <ScalarProperty Name="emp_perfil" ColumnName="emp_perfil" />
+                <ScalarProperty Name="emp_salario" ColumnName="emp_salario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="persona">
+            <EntityTypeMapping TypeName="BetProjectModel.persona">
+              <MappingFragment StoreEntitySet="persona">
+                <ScalarProperty Name="per_documento" ColumnName="per_documento" />
+                <ScalarProperty Name="per_nombre" ColumnName="per_nombre" />
+                <ScalarProperty Name="per_fecha_nac" ColumnName="per_fecha_nac" />
+                <ScalarProperty Name="per_correo" ColumnName="per_correo" />
+                <ScalarProperty Name="per_genero" ColumnName="per_genero" />
+                <ScalarProperty Name="per_contrasena" ColumnName="per_contrasena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

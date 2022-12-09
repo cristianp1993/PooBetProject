@@ -1,0 +1,74 @@
+#lbl_title{
+    color: #FDFEFE;
+    margin-top: 20%;;
+    font-style: italic;
+    font-weight: bold;
+}
+.flex-center{
+    display: flex;
+}
+
+#img_background_login{
+
+    width: 100%;
+    height: 100vh;
+    background-repeat: no-repeat;
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    -webkit-transition: .3s ease-in-out;
+    transition: .4s ease-in-out;
+    
+    
+}
+
+#img_background_login:hover{
+
+    -webkit-filter: blur(0);
+    filter: blur(0);
+}
+
+
+
+form{
+    margin-top: 60%;
+}
+
+label{
+
+    color:#FDFEFE;
+    font-size: larger;
+    font-weight: bold;
+
+}
+
+#img_menuMundial{
+
+    width:100%;
+    height:100vh;
+}
+
+#form_registro{
+    display:none;
+}
+
+#footerLayaut{
+    margin-top:100px;
+    padding-top:50px;
+}
+
+#sel_genero{
+    height:35px;
+}
+
+#form_create {
+    background-color: #FEF9E7;
+    padding: 5px;
+    height: 100vh;
+}
+#form_create label {
+    color: #4F5D5D
+}
+
+#btn_create{
+    width:200px;
+}
